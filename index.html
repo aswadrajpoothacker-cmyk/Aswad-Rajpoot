@@ -1,286 +1,590 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SIM DATA LOOKUP</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
 
-    /* Matrix background animation */
-    .matrix-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.15;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
 
-    .matrix-column {
-      position: absolute;
-      top: -100%;
-      color: #0f0;
-      font-size: 20px;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      text-shadow: 0 0 5px #0f0;
-      animation: matrix-fall linear infinite;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    @keyframes matrix-fall {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100vh); }
-    }
+    <title>ASWAD RAJPOOT HACKER DATABASE</title>
+<style>
+body{
+  margin: 0;
+  padding: 0;
+  background: #000;
+  front-family: 'Courier New', monoscope;
+  display: flex
+  justify-content: center;
+  align-item: center;
+  height; 100vh
+  overflow:hidden;
+  position:relative;
+  }
+  /*Matrix background animation */
+  .matrix-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden;
+  }
+  .matrix-colum {
+  position: absolute;
+  top: -100%;
+  colour: #0f0
+  font-size: 20px;
+  writing-mode; vertical-rl;
+  text-orientation: upright;
+  text-shadow: 0 0 5px #0f0;
+  animation:matrix-fall linear infinite;
+  }
+  
+  @keyframe matrix-fall {
+  0% { transform: translateY(-100%);}
+  100% { transform: translateY(100vh);}
+  }
 
-    .box {
-      background: rgba(0, 20, 0, 0.8);
-      border: 1px solid #0f0;
-      box-shadow: 0 0 25px #0f0;
-      padding: 25px 20px;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 350px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+  
+    <meta name="description" content="Sim Data, Sim Database, Sim details ownership, VIP Sim Database.">
 
-    .top-title {
-      color: #0f0;
-      text-shadow: 0 0 10px #0f0;
-      font-size: 16px;
-      margin-bottom: 5px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
+    
 
-    .box h2 {
-      color: #0f0;
-      font-size: 20px;
-      margin-bottom: 15px;
-      text-shadow: 0 0 5px #0f0;
-      letter-spacing: 1px;
-    }
+    <!-- VIP Design Fonts -->
 
-    .input-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    .box input {
-      width: 90%;
-      padding: 10px;
-      border-radius: 0;
-      border: 1px solid #0f0;
-      font-size: 14px;
-      background: #000;
-      color: #0f0;
-      box-shadow: inset 0 0 10px #0f0;
-      font-family: 'Courier New', monospace;
-    }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    .box input::placeholder {
-      color: #0a0;
-      opacity: 0.7;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
 
-    .box button {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #0f0;
-      border-radius: 0;
-      margin: 8px 0;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #000;
-      background: #0f0;
-      box-shadow: 0 0 15px #0f0;
-      transition: 0.3s;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 1px;
-    }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    .box button:hover {
-      transform: scale(1.02);
-      background: #0a0;
-      color: #0f0;
-    }
+    <style>
 
-    .whatsapp-btn {
-      background: #25D366;
-      border: 1px solid #25D366;
-      color: white;
-    }
+        /* --- FINAL VIP DESIGN - Dark Neumorphism --- */
 
-    #responseBox {
-      color: #0f0;
-      margin: 15px auto 0;
-      font-size: 14px;
-      display: none;
-      background: rgba(0, 10, 0, 0.5);
-      border: 1px solid #0f0;
-      padding: 12px;
-      border-radius: 0;
-      text-align: left;
-      font-family: 'Courier New', monospace;
-      line-height: 1.5;
-      width: 90%;
-    }
+        :root {
 
-    .blink {
-      animation: blink 1s infinite;
-    }
+            --primary-green: #25D366;
 
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+            --glow-color: rgba(37, 211, 102, 0.7);
 
-    .footer {
-      color: #0a0;
-      margin-top: 15px;
-      font-size: 12px;
-    }
-  </style>
+            --bg-color: #2c2f33;
+
+            --light-shadow-color: #373a3f;
+
+            --dark-shadow-color: #212326;
+
+            --text-color: #e0e0e0;
+
+            --text-color-muted: #888;
+
+        }
+
+        /* --- Basic Reset & Base Styling --- */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+
+            font-family: 'bold italic, sans-serif;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);green
+
+            text-align: center;
+
+        }
+
+        .container {
+
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+        }
+
+        /* --- VIP Header --- */
+
+        .header {
+
+            font-size: 2.5em;
+
+            font-weight: 700;
+
+            color: var(--primary-green);
+
+            text-shadow: 0 0 8px var(--glow-color);
+
+            margin: 30px 0;
+
+        }
+
+        /* --- VIP Card Style --- */
+
+        .card {
+
+            background: var(--bg-color);
+
+            border-radius: 20px;
+
+            box-shadow: 8px 8px 16px var(--dark-shadow-color), -8px -8px 16px var(--light-shadow-color);
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+            text-align: left;
+
+        }
+
+        .card h2 {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            font-weight: 600;
+
+        }
+
+        /* --- VIP Form Elements --- */
+
+        #query {
+
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            font-size: 1em;
+
+            text-align: center;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);
+
+            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
+
+        }
+
+        #query:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 2px var(--primary-green), inset 2px 2px 4px var(--dark-shadow-color), inset -2px -2px 4px var(--light-shadow-color);
+
+        }
+
+        #query::placeholder { color: var(--text-color-muted); }
+
+        .search-btn {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 16px;
+
+            font-size: 1.2em;
+
+            font-weight: 600;
+
+            background: var(--primary-green);
+
+            color: #000;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+
+            box-shadow: 4px 4px 10px var(--dark-shadow-color), -4px -4px 10px var(--light-shadow-color), 0px 0px 15px var(--glow-color);
+
+        }
+
+        .search-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 6px 6px 12px var(--dark-shadow-color), -6px -6px 12px var(--light-shadow-color), 0px 0px 25px var(--glow-color);
+
+        }
+
+        .warning { color: var(--text-color-muted); margin-top: 15px; font-size: 0.9em; text-align: center; }
+
+        /* --- VIP Results & Notifications --- */
+
+        #results { margin-top: 20px; }
+
+        .result-box {
+
+            background-color: var(--bg-color);
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
+
+            animation: fadeIn 0.5s ease;
+
+        }
+
+        .result-box p {
+
+            font-size: 1rem;
+
+            margin: 10px 0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+        }
+
+        .label { font-weight: 600; color: var(--text-color-muted); margin-right: 15px; }
+
+        .result-box .value { font-family: 'Source Code Pro', monospace; color: var(--text-color); }
+
+        #noData {
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: var(--bg-color);
+
+            box-shadow: inset 4px 4px 8px var(--dark-shadow-color), inset -4px -4px 8px var(--light-shadow-color);
+
+            color: var(--text-color-muted);
+
+            line-height: 1.7;
+
+            text-align: center;
+
+        }
+
+        #noData a {
+
+            display: block;
+
+            margin-top: 15px;
+
+            color: var(--primary-green);
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+        }
+
+       
+
+     
+
+            list-style-type: none;
+
+            padding: 0;
+
+            font-size: 1rem;
+
+        
+
+      
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid var(--dark-shadow-color);
+
+        }
+
+        .service-list li::before {
+
+            content: "✅";
+
+            margin-right: 10px;
+
+            color: var(--primary-green);
+
+        }
+
+        .service-list li:last-child { border-bottom: none; }
+
+        
+
+    
+
+        .card h3 { color: var(--text-color); margin-bottom: 15px; border-bottom: 1px solid var(--dark-shadow-color); padding-bottom: 10px; }
+
+        .card p { line-height: 1.7; color: var(--text-color-muted); }
+
+        .contact-list { list-style: none; padding: 0; }
+
+        .contact-list li { margin: 10px 0; }
+
+        .contact-list i { margin-right: 10px; color: var(--primary-green); width: 20px; text-align: center; }
+
+        .contact-list a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
+
+        .contact-list a:hover { color: var(--primary-green); }
+
+        /* --- Footer --- */
+
+        footer { padding: 30px 20px; text-align: center; border-top: 1px solid var(--dark-shadow-color); margin-top: 20px; }
+
+        footer p { color: var(--text-color-muted); }
+
+        .hidden { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+
 </head>
+
 <body>
-  <!-- Matrix background animation -->
-  <div class="matrix-bg" id="matrixBg"></div>
 
-  <div class="box">
-    <div class="top-title">ASWAD RAJPOOT HACKER DATABASE</div>
-    <h2>🔍 SIM DATA TERMINAL</h2>
-    <div class="input-container">
-      <input type="text" id="number" placeholder="ENTER TARGET NUMBER" required />
-    </div>
-    <button onclick="fetchData()">⏎ EXECUTE QUERY</button>
+    <div class="container">
 
-    <div id="responseBox"></div>
+        <div class="header">ASWAD RAJPOOT HACKER DATABASE</div>
 
-    <button id="shareButton" onclick="shareWhatsApp()" style="display: none;">📲 EXPORT TO WHATSAPP</button>
+        <div class="card">
+
+            <input type="text" id="query" placeholder="ENTER YOUR TARGET NUMBER. 03XX" />
+
+            <button class="search-btn" onclick="searchData()">Search <i class="fa fa-search"></i></button>
+
+            <p class="warning">ASWAD RAJPOOT CYBER HACKER😎😈☠️</p>
+
+        </div>
+
+        <div id="results"></div>
+
+        <p class="hidden" id="noData"></p>
+
+        <div class="card services">
+
+            <h2>ALL SERVICES AVALAIBLE</h2>
+
+            <ul class="service-list">
+
+                <li>Fresh Sim Details</li>
+
+                <li>CNIC Numbers Check</li>
+
+                <li>CNIC Colour Picture</li>
+
+                <li>CDR - Call Detail Records</li>
+
+                <li>Family Tree & FRC Details</li>
+
+                <li>Mobile IMEI Tracking</li>
+
+                <li>SIM Live Location Tracking</li>
+
+                <li>Vehicle Details Check</li>
+
+                <li>Passport Copy & Details</li>
+
+                <li>Bank Statement & Details</li>
+
+                <li><strong> EACH AND EVERYTHING Available...</strong></li>
+
+            </ul>
+
+        </div>
+
+        
+
+        <div class="card">
+
+             <h3>🚨WARNING ☠️</h3>
+            <p>All services and website are for educational, security, and verification purposes only. We do not support or promote illegal access or misuse of data.</p> 
+            
+        
+      
+
    
-    <div class="footer">DEVELOPED BY ASWAD CYBER HACKER</div>
-  </div>
 
-  <script>
-    // Create matrix background animation
-    function createMatrix() {
-      const matrixBg = document.getElementById('matrixBg');
-      const chars = "TEAM BLACK HAT0123456789";
-      const columns = Math.floor(window.innerWidth / 20);
-      
-      for (let i = 0; i < columns; i++) {
-        const column = document.createElement('div');
-        column.className = 'matrix-column';
-        column.style.left = (i * 20) + 'px';
-        column.style.animationDuration = (Math.random() * 5 + 5) + 's';
-        column.style.animationDelay = (Math.random() * 5) + 's';
+        </div>
+
+        <div class="card">
+
+             <h3>Contact US ASWAD:923332269513</h3>
+
+             <ul class="contact-list">
+
+                <li><i class="fa fa-phone"></i><a href="tel:+923277712441" -envelope"></i><a href="YOUR EMILE"></a></li>
+
+             </ul>
+
+        </div>
+
+    </div>
+
+    
+
+    <footer>
+
+        <p>DEVELOPED BY ASWAD RAJPOOT CYBER HACKER😎☠️ OUT RANG HACKER.</p>
         
-        // Create random TEAM BLACK HAT text
-        let text = '';
-        const length = Math.floor(Math.random() * 10) + 10;
-        for (let j = 0; j < length; j++) {
-          text += chars.charAt(Math.floor(Math.random() * chars.length)) + '\n';
+      .</p>
+
+    </footer>
+
+    <script>
+
+        // --- YOUR JAVASCRIPT LOGIC IS PRESERVED ---
+
+        const whatsappLink = 'https://wa.me/9230000XXXX';
+
+        function searchData() {
+
+            const query = document.getElementById("query").value.trim().replace(/\s+/g, '');
+
+            const url = `https://pakdatabase.site/api/search.php?username=Kami&password=123456&search_term=${encodeURIComponent(query)}`;
+
+            const resultsContainer = document.getElementById("results");
+
+            const noData = document.getElementById("noData");
+
+            
+
+            resultsContainer.innerHTML = '';
+
+            noData.classList.remove('hidden');
+
+            noData.textContent = 'Searching...';
+
+            
+
+            if (query === '') {
+
+                noData.classList.remove('hidden');
+
+                noData.textContent = '⚠️ Please enter a valid number';
+
+                return;
+
+            }
+
+            fetch(url)
+
+                .then(res => res.json())
+
+                .then(data => {
+
+                    let output = '';
+
+                    const numbers = new Set(); // Use a Set for faster unique checks
+
+                    for (const network in data) {
+
+                        const records = data[network];
+
+                        if (Array.isArray(records)) {
+
+                            records.forEach(entry => {
+
+                                const mobile = entry.Mobile || entry.SUB_NO || '';
+
+                                if (!mobile || numbers.has(mobile)) return;
+
+                                numbers.add(mobile);
+
+                                const name = entry.Name || entry.NAME || 'N/A';
+
+                                const cnic = entry.CNIC || entry.NIC || 'N/A';
+
+                                const address = entry.Address || entry.ADDRESS || 'N/A';
+
+                                output += `
+
+                                <div class="result-box">
+
+                                    <p><span class="label">Mobile:</span> <span class="value">${mobile}</span></p>
+
+                                    <p><span class="label">Name:</span> <span class="value">${name}</span></p>
+
+                                    <p><span class="label">ID Card:</span> <span class="value">${cnic}</span></p>
+
+                                    <p><span class="label">Address:</span> <span class="value">${address}</span></p>
+
+                                </div>`;
+
+                            });
+
+                        }
+
+                    }
+
+                    if (output) {
+
+                        resultsContainer.innerHTML = output;
+
+                        noData.classList.add('hidden');
+
+                    } else {
+
+                        noData.innerHTML = `
+
+                        اس نمبر کا فریش فرنچائز والا ڈیٹا لینا پڑے گا جس کی فیس 500 روپے ہے۔
+
+                        <br> فرنچائز سے اس نمبر کی ڈیٹیل لینے کےلئے ایڈمن کے واٹس ایپ نمبر پر رابطہ کریں۔
+
+                        <br><a href="${whatsappLink}" target="_blank">03277712441 واٹس ایپ رابطے کے لیے اس نمبر پر کلک کریں</a>`;
+
+                    }
+
+                })
+
+                .catch(err => {
+
+                    console.error("API error:", err);
+
+                    noData.classList.remove('hidden');
+
+                    noData.innerHTML = `⚠️ API response failed. Try again or contact admin.`;
+
+                });
+
         }
-        column.textContent = text;
-        
-        matrixBg.appendChild(column);
-      }
-    }
 
-    // Initialize matrix animation
-    window.onload = function() {
-      createMatrix();
-      typePlaceholder();
-    };
+    </script>
 
-    // Typing effect for input placeholder
-    function typePlaceholder() {
-      const input = document.getElementById("number");
-      const originalPlaceholder = "ENTER TARGET NUMBER";
-      let i = 0;
-      
-      function typing() {
-        if (i < originalPlaceholder.length) {
-          input.placeholder = originalPlaceholder.substring(0, i+1);
-          i++;
-          setTimeout(typing, Math.random() * 100 + 50);
-        }
-      }
-      typing();
-    }
+    <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
 
-    async function fetchData() {
-      const number = document.getElementById("number").value.trim();
-      const responseBox = document.getElementById("responseBox");
-      const shareButton = document.getElementById("shareButton");
+    <script>
 
-      if (!number) {
-        alert("INPUT ERROR: NO TARGET SPECIFIED");
-        return;
-      }
+      var wa_btnSetting = {"btnColor":"#25D366","ctaText":"","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"+923277712441","welcomeMessage":"How can I help you?","zIndex":999999,"btnColorScheme":"light"};
 
-      responseBox.innerHTML = `<div>CONNECTING TO DATABASE... <span class="blink">█</span></div>`;
-      responseBox.style.display = "block";
-      shareButton.style.display = "none";
+      window.onload = () => {
 
-      const url = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://fam-official.serv00.net/sim/api.php?num=${number}`)}`;
+        _waEmbed(wa_btnSetting);
 
-      try {
-        const res = await fetch(url);
-        const json = await res.json();
-        const apiData = JSON.parse(json.contents);
+      };
 
-        setTimeout(() => {
-          if (apiData.status === "success" && Array.isArray(apiData.data) && apiData.data.length > 0) {
-            const user = apiData.data[0];
-            const content = `
-> DATABASE ENTRY FOUND
-> -------------------
-📞 MOBILE: ${user.Mobile || "NOT FOUND"}
-👤 NAME: ${user.Name || "NOT FOUND"}
-🆔 CNIC: ${user.CNIC || "NOT FOUND"}
-📍 ADDRESS: ${user.Address || "NOT FOUND"}
-📶 OPERATOR: ${user.Operator || "NOT FOUND"}
-            `;
-            responseBox.innerText = content;
-            shareButton.style.display = "inline-block";
-          } else {
-            responseBox.innerHTML = `<div style="color: #0f0; font-weight: bold;">>> ERROR 404: DATA NOT FOUND</div>`;
-            shareButton.style.display = "none";
-          }
-        }, 1500);
-      } catch (e) {
-        setTimeout(() => {
-          responseBox.innerHTML = `<div style="color: #f00; font-weight: bold;">>> SYSTEM ERROR: CONNECTION FAILED</div>`;
-          shareButton.style.display = "none";
-        }, 1500);
-      }
-    }
+    </script>
 
-    function shareWhatsApp() {
-      const responseBox = document.getElementById("responseBox");
-      const text = encodeURIComponent("HACKER TOOL RESULTS:\n" + responseBox.innerText);
-      const url = `https://wa.me/?text=${text}`;
-      window.open(url, '_blank');
-    }
-  </script>
 </body>
+
 </html>
