@@ -26,10 +26,10 @@
 
             .light-theme {
                 /* Light Theme */
-                --bg-color: #f0f2f5;
+                --bg-color:{
                 --card-bg: #ffffff;
                 --border-color: #dcdfe6;
-                --text-color: #333;
+                --text-color: #0f0;
                 --muted-text-color: #666;
                 --accent-color: #007bff;
                 --accent-light: #2c8eff;
