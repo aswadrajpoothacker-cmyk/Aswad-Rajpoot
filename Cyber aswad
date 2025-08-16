@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASWAD DATABASE</title>
+
+    <meta name="description" content="Sim Data, Sim Database, Sim details ownership, VIP Sim Database.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Naskh+Arabic:wght@400;700&family=Righteous&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    
+
+    <style>
+
+        :root {
+
+            /* Dark Theme */
+
+            --bg-color: #1a1a1a;
+
+            --card-bg: #2b2b2b;
+
+            --border-color: #444;
+
+            --text-color: #e0e0e0;
+
+            --muted-text-color: #a0a0a0;
+
+            --accent-color: #007bff;
+
+            --accent-light: #2c8eff;
+
+            --shadow: rgba(0, 0, 0, 0.4);
+
+            --urdu-highlight: #f8e100;
+
+        }
+
+        .light-theme {
+
+            /* Light Theme */
+
+            --bg-color: #f0f2f5;
+
+            --card-bg: #ffffff;
+
+            --border-color: #dcdfe6;
+
+            --text-color: #333;
+
+            --muted-text-color: #666;
+
+            --accent-color: #007bff;
+
+            --accent-light: #2c8eff;
+
+            --shadow: rgba(0, 0, 0, 0.1);
+
+            --urdu-highlight: #c29f00;
+
+        }
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        html, body {
+
+            font-family: 'Roboto', sans-serif;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);
+
+            text-align: center;
+
+            line-height: 1.6;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+        }
+
+        .container {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            margin: 20px auto;
+
+            padding: 0 20px;
+
+        }
+
+        .header {
+
+            font-family: 'Righteous', sans-serif;
+
+            font-size: 2.8em;
+
+            font-weight: 400;
+
+            color: var(--accent-color);
+
+            margin-bottom: 40px;
+
+            letter-spacing: 2px;
+
+            transition: color 0.3s ease;
+
+        }
+
+        .header-image {
+
+            width: 100%;
+
+            max-width: 300px;
+
+            height: auto;
+
+            margin-bottom: 40px;
+
+            animation: fadeIn 0.8s ease-out;
+
+        }
+
+        .card {
+
+            background: var(--card-bg);
+
+            border-radius: 15px;
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+            border: 1px solid var(--border-color);
+
+            box-shadow: 0 5px 15px var(--shadow);
+
+            animation: fadeIn 0.8s ease-out;
+
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        #query {
+
+            width: 100%;
+
+            padding: 18px;
+
+            border: 1px solid var(--border-color);
+
+            border-radius: 10px;
+
+            font-size: 1.1em;
+
+            text-align: center;
+
+            background-color: var(--bg-color);
+
+            color: var(--text-color);
+
+            transition: all 0.3s ease;
+
+        }
+
+        #query:focus {
+
+            outline: none;
+
+            box-shadow: 0 0 0 3px var(--accent-color);
+
+            border-color: var(--accent-color);
+
+            background-color: var(--card-bg);
+
+        }
+
+        .search-btn {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 18px;
+
+            font-size: 1.2em;
+
+            font-weight: 700;
+
+            background: var(--accent-color);
+
+            color: #fff;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            text-transform: uppercase;
+
+        }
+
+        .search-btn:hover {
+
+            background: var(--accent-light);
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+
+        }
+
+        .warning {
+
+            color: var(--muted-text-color);
+
+            margin-top: 15px;
+
+            font-size: 0.9em;
+
+        }
+
+        #results {
+
+            margin-top: 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+        }
+
+        .result-box {
+
+            background-color: var(--card-bg);
+
+            border-radius: 10px;
+
+            padding: 20px;
+
+            border: 1px solid var(--border-color);
+
+            box-shadow: inset 0 2px 5px var(--shadow);
+
+            animation: fadeIn 0.6s ease;
+
+            text-align: left;
+
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .result-box p {
+
+            font-size: 1rem;
+
+            margin: 10px 0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .label {
+
+            font-weight: 500;
+
+            color: var(--muted-text-color);
+
+            flex-grow: 1;
+
+        }
+
+        .result-box .value {
+
+            color: var(--text-color);
+
+            text-align: right;
+
+            max-width: 60%;
+
+            overflow-wrap: break-word;
+
+            font-weight: 500;
+
+        }
+
+        .highlighted-value {
+
+            color: var(--accent-color);
+
+            font-weight: 700;
+
+        }
+
+        .action-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+
+            justify-content: center;
+
+        }
+
+        .action-buttons button {
+
+            flex: 1;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-size: 1em;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            border: 1px solid var(--border-color);
+
+            transition: all 0.3s ease;
+
+        }
+
+        .copy-btn {
+
+            background-color: var(--border-color);
+
+            color: var(--text-color);
+
+        }
+
+        .copy-btn:hover {
+
+            background-color: var(--accent-color);
+
+            color: #fff;
+
+        }
+
+        .get-more-btn {
+
+            background-color: var(--accent-color);
+
+            color: #fff;
+
+        }
+
+        .get-more-btn:hover {
+
+            background-color: var(--accent-light);
+
+        }
+
+        #noData {
+
+            margin-top: 25px;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            background: var(--card-bg);
+
+            box-shadow: 0 5px 15px var(--shadow);
+
+            color: var(--muted-text-color);
+
+            line-height: 1.7;
+
+            text-align: center;
+
+            border: 1px solid var(--accent-color);
+
+            animation: fadeIn 0.6s ease;
+
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        #noData h4 {
+
+            color: var(--accent-color);
+
+            font-size: 1.5em;
+
+            margin-bottom: 15px;
+
+        }
+
+        #noData .urdu-text {
+
+            font-family: 'Noto Naskh Arabic', serif;
+
+            color: var(--urdu-highlight);
+
+            font-size: 1.1em;
+
+        }
+
+        #noData a {
+
+            display: block;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: var(--accent-color);
+
+            color: #fff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        #noData a:hover {
+
+            background: var(--accent-light);
+
+            transform: translateY(-2px);
+
+        }
+
+        .contact-card {
+
+            margin-top: 20px;
+
+        }
+
+        .contact-list {
+
+            list-style: none;
+
+            padding: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+
+        }
+
+        .contact-list li {
+
+            background: var(--border-color);
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            transition: background-color 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .contact-list li:hover {
+
+            background-color: #555;
+
+        }
+
+        .light-theme .contact-list li:hover {
+
+            background-color: #e0e0e0;
+
+        }
+
+        .contact-list i {
+
+            margin-right: 15px;
+
+            color: var(--accent-color);
+
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 1.2em;
+
+        }
+
+        .contact-list a {
+
+            color: var(--text-color);
+
+            text-decoration: none;
+
+            transition: color 0.3s ease;
+
+        }
+
+        .contact-list a:hover {
+
+            color: var(--accent-color);
+
+        }
+
+        footer {
+
+            width: 100%;
+
+            padding: 20px 20px;
+
+            margin-top: auto;
+
+            text-align: center;
+
+            color: var(--muted-text-color);
+
+            font-size: 0.9em;
+
+            border-top: 1px solid var(--border-color);
+
+            transition: border-color 0.3s ease, color 0.3s ease;
+
+        }
+
+        .hidden {
+
+            display: none;
+
+        }
+
+        .loading-container {
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            animation: fadeIn 0.5s ease;
+
+        }
+
+        .loading-bar {
+
+            width: 100%;
+
+            height: 8px;
+
+            background: var(--border-color);
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+        .loading-bar::after {
+
+            content: '';
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            height: 100%;
+
+            width: 0;
+
+            background: var(--accent-color);
+
+            animation: loading 2s infinite ease-in-out;
+
+        }
+
+        .loading-text {
+
+            margin-top: 10px;
+
+            font-size: 1em;
+
+            color: var(--accent-color);
+
+            font-weight: 500;
+
+            animation: pulseText 1s infinite;
+
+        }
+
+        .theme-toggle {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            width: 45px;
+
+            height: 45px;
+
+            background: var(--card-bg);
+
+            border-radius: 50%;
+
+            border: 1px solid var(--border-color);
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        }
+
+        .theme-toggle i {
+
+            font-size: 1.2em;
+
+            color: var(--text-color);
+
+            transition: color 0.3s ease;
+
+        }
+
+        .whatsapp-fab {
+
+            position: fixed;
+
+            bottom: 25px;
+
+            right: 25px;
+
+            width: 60px;
+
+            height: 60px;
+
+            background-color: #25D366;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 2em;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+            cursor: pointer;
+
+            transition: transform 0.3s ease;
+
+            z-index: 1000;
+
+        }
+
+        .whatsapp-fab:hover {
+
+            transform: scale(1.1);
+
+        }
+
+        
+
+        /* Animations */
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(15px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        @keyframes loading {
+
+            0% { width: 0; }
+
+            50% { width: 100%; }
+
+            100% { width: 0; transform: translateX(100%); }
+
+        }
+
+        @keyframes pulseText {
+
+            0% { opacity: 1; }
+
+            50% { opacity: 0.5; }
+
+            100% { opacity: 1; }
+
+        }
+
+    </style>
+
+</head>
+
+<body class="dark-theme">
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+
+        <i class="fas fa-moon"></i>
+
+    </div>
+
+    
+
+    <div class="whatsapp-fab" onclick="window.open('https://whatsapp.com/channel/0029VbAzazM2kN1geqIZ2P', '_blank')">
+
+        <i class="fa-brands fa-whatsapp"></i>
+
+    </div>
+
+    <div class="container">
+
+        <img src="https://i.postimg.cc/gkrL0GJg/SimdbASWAD.png" alt="ASWAD DATABASE" class="header-image">
+
+        
+
+        <div class="card">
+
+            <input type="text" id="query" placeholder="Enter Mobile e.g. 030000XXXXX" />
+
+            <button class="search-btn" onclick="searchData()">Search <i class="fa fa-search"></i></button>
+
+            <p class="warning">Enter Number Like This: 030000XXXXX</p>
+
+        </div>
+
+        <div id="loading-spinner" class="loading-container hidden">
+
+            <div class="loading-bar"></div>
+
+            <div class="loading-text">Getting Data...</div>
+
+        </div>
+
+        <div id="results"></div>
+
+        <div id="noData" class="hidden">
+
+            <h4>DATA NOT 🚫 FOUND!</h4>
+
+            <p class="urdu-text">اس نمبر کا ڈیٹا نادرا فرینچائز سے 500 روپے میں ملے گا۔ مزید معلومات کے لیے رابطہ کریں۔</p>
+
+            <a href="https://wa.me/+923332269513?text=I+Want+New+Number+Data+in+Rs+500" target="_blank" class="contact-btn">
+
+                Get New Number Data
+
+            </a>
+
+        </div>
+
+        
+
+        <div class="card contact-card">
+
+            <h2>ASWAD HACKS</h2>
+
+            <ul class="contact-list">
+
+                <li><i class="fa-brands fa-tiktok"></i><a href="https://xmod.top/p/aswad-tt-downloader" target="_blank">TikTok Downloader</a></li>
+
+                <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/+923332269513?text=Hi+Aswad" target="_blank">Admin WhatsApp</a></li>
+
+                <li><i class="fa-brands fa-whatsapp"></i><a href="https://whatsapp.com/channel/0029VbAazM2kNFp4p1qIZ2P" target="_blank">WhatsApp Channel</a></li>
+
+                <li><i class="fa-brands fa-telegram"></i><a href="https://t.me/@cyberfia" target="_blank">Telegram Channel</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>Copyright 2025 ASWAD. All Rights Reserved.</p>
+
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+
+        const paidDataLink = 'https://wa.me/+923332269513?text=I+Want+New+Number+Data+in+Rs+500';
+
+        function showToast(message, type = 'success') {
+
+            const isDark = document.body.classList.contains('dark-theme');
+
+            let backgroundColor, icon;
+
+            if (type === 'success') {
+
+                backgroundColor = isDark ? 'linear-gradient(to right, #28a745, #218838)' : 'linear-gradient(to right, #28a745, #218838)';
+
+                icon = '<i class="fa-solid fa-circle-check" style="margin-right: 10px;"></i>';
+
+            } else {
+
+                backgroundColor = isDark ? 'linear-gradient(to right, #dc3545, #c82333)' : 'linear-gradient(to right, #dc3545, #c82333)';
+
+                icon = '<i class="fa-solid fa-circle-xmark" style="margin-right: 10px;"></i>';
+
+            }
+
+            Toastify({
+
+                text: `${icon} ${message}`,
+
+                duration: 3000,
+
+                newWindow: true,
+
+                close: true,
+
+                gravity: "bottom", 
+
+                position: "center",
+
+                backgroundColor: backgroundColor,
+
+                stopOnFocus: true,
+
+                escapeMarkup: false,
+
+                style: {
+
+                    borderRadius: "10px",
+
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+
+                }
+
+            }).showToast();
+
+        }
+
+        async function searchData() {
+
+            const queryInput = document.getElementById("query");
+
+            const query = queryInput.value.trim().replace(/\s+/g, '');
+
+            const resultsContainer = document.getElementById("results");
+
+            const noDataContainer = document.getElementById("noData");
+
+            const loadingSpinner = document.getElementById("loading-spinner");
+
+            
+
+            resultsContainer.innerHTML = '';
+
+            noDataContainer.classList.add('hidden');
+
+            if (query === '') {
+
+                showToast('Please enter a valid number', 'error');
+
+                return;
+
+            }
+
+            loadingSpinner.classList.remove('hidden');
+
+            const url = `https://pakdatabase.site/api/search.php?username=Kami&password=123456&search_term=${encodeURIComponent(query)}`;
+
+            try {
+
+                const res = await fetch(url);
+
+                const data = await res.json();
+
+                let output = '';
+
+                const numbers = new Set();
+
+                let firstCnic = null;
+
+                for (const network in data) {
+
+                    const records = data[network];
+
+                    if (Array.isArray(records)) {
+
+                        records.forEach(entry => {
+
+                            const mobile = entry.Mobile || entry.SUB_NO || 'N/A';
+
+                            if (!mobile || numbers.has(mobile)) return;
+
+                            numbers.add(mobile);
+
+                            
+
+                            const name = entry.Name || entry.NAME || 'N/A';
+
+                            const cnic = entry.CNIC || entry.NIC || 'N/A';
+
+                            const address = entry.Address || entry.ADDRESS || 'N/A';
+
+                            
+
+                            if (cnic !== 'N/A' && !firstCnic) {
+
+                                firstCnic = cnic;
+
+                            }
+
+                            output += `
+
+                                <div class="result-box" data-cnic="${cnic}">
+
+                                    <p><span class="label">Mobile:</span> <span class="value">${mobile}</span></p>
+
+                                    <p><span class="label">Name:</span> <span class="value highlighted-value">${name}</span></p>
+
+                                    <p><span class="label">ID Card:</span> <span class="value highlighted-value">${cnic}</span></p>
+
+                                    <p><span class="label">Address:</span> <span class="value highlighted-value">${address}</span></p>
+
+                                    <div class="action-buttons">
+
+                                        <button class="copy-btn" onclick="copyResult(this)">Copy Data</button>
+
+                                        <button class="get-more-btn" onclick="searchMoreByCnic(this)">Get More Numbers</button>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        });
+
+                    }
+
+                }
+
+                loadingSpinner.classList.add('hidden');
+
+                
+
+                if (output) {
+
+                    resultsContainer.innerHTML = output;
+
+                    showToast('Search complete!');
+
+                } else {
+
+                    noDataContainer.classList.remove('hidden');
+
+                    showToast('Data not found for this number.', 'error');
+
+                }
+
+            } catch (err) {
+
+                console.error("API error:", err);
+
+                loadingSpinner.classList.add('hidden');
+
+                noDataContainer.classList.remove('hidden');
+
+                showToast('API response failed. Please try again.', 'error');
+
+            }
+
+        }
+
+        function copyResult(button) {
+
+            const resultBox = button.closest('.result-box');
+
+            const dataToCopy = resultBox.textContent.split('\n').filter(line => line.trim() !== '').join('\n');
+
+            navigator.clipboard.writeText(dataToCopy)
+
+                .then(() => {
+
+                    showToast('Data copied to clipboard!');
+
+                })
+
+                .catch(err => {
+
+                    const textarea = document.createElement('textarea');
+
+                    textarea.value = dataToCopy;
+
+                    document.body.appendChild(textarea);
+
+                    textarea.select();
+
+                    document.execCommand('copy');
+
+                    document.body.removeChild(textarea);
+
+                    showToast('Data copied to clipboard (fallback)');
+
+                });
+
+        }
+
+        
+
+       function searchMoreByCnic(button) {
+
+            const cnic = button.closest('.result-box').getAttribute('data-cnic');
+
+            if (cnic && cnic !== 'N/A') {
+
+                document.getElementById('query').value = cnic;
+
+                searchData();
+
+            } else {
+
+                showToast('CNIC not available for this entry.', 'error');
+
+            }
+
+        }
+
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        function toggleTheme() {
+
+            const isLight = document.body.classList.toggle('light-theme');
+
+            if (isLight) {
+
+                themeIcon.classList.remove('fa-moon');
+
+                themeIcon.classList.add('fa-sun');
+
+                localStorage.setItem('theme', 'light');
+
+            } else {
+
+                themeIcon.classList.remove('fa-sun');
+
+                themeIcon.classList.add('fa-moon');
+
+                localStorage.setItem('theme', 'dark');
+
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+
+            if (savedTheme === 'light') {
+
+                document.body.classList.add('light-theme');
+
+                themeIcon.classList.remove('fa-moon');
+
+                themeIcon.classList.add('fa-sun');
+
+            } else {
+
+                document.body.classList.remove('light-theme');
+
+                themeIcon.classList.remove('fa-sun');
+
+                themeIcon.classList.add('fa-moon');
+
+            }
+
+        });
+
+    </script>
+
+<script type='text/javascript' src='//pl26635370.profitableratecpm.com/0d/d6/68/0dd66892ae1350e1c2ac63bd9e54e111.js'></script></body>
+
+</html>
